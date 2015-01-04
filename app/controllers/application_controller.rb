@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
 	respond_to :json
 	# Prevent CSRF attacks by raising an exception.
 	protect_from_forgery with: :null_session,:if => Proc.new { |c| c.request.format == 'application/json' }
+
+	#When an unauthorized user requests a route it will return 401
 	acts_as_token_authentication_handler_for User
 
 	# Apply strong_parameters filtering before CanCan authorization
